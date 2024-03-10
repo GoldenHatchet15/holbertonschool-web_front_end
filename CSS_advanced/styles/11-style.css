@@ -39,14 +39,6 @@ a {
     text-align: var(--section-header-align);
 }   
 
-.section-title {
-    font-family: var(--font-family-title); /* Sets the family of fonts to font-family-title */
-    font-size: var(--font-size-xx-large); /* Sets the font size */
-    font-weight: var(--font-weight-bold); /* Sets the font weight */
-    margin: var(--section-title-margin); /* Sets the margin */
-    color: var(--section-title-color); /* Sets the text color */
-}
-
 :root {
     --color-primary: #d73953;
     --color-black: #090909;
@@ -67,8 +59,5 @@ a {
     --line-height-base: 1.5;
     --line-height-big: 1.8;
     --section-header-align: center;
-    --section-tagline-transform: uppercase;
-    --section-title-margin: 0; /* New custom property for section title margin */
-    --section-title-color: var(--color-black); /* New custom property for section title color */
+    --section-tagline-transform: uppercase; /* Add a new variable to transform the text to uppercase */
 }
-
