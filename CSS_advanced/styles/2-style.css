@@ -1,0 +1,23 @@
+html{
+    scroll-behavior: smooth;
+}
+
+body {
+    color: #161616; /* Sets the foreground color of the body text */
+}
+
+a {
+    color: #161616; /* Sets the foreground color of all anchor elements */
+}
+
+.visually-hidden {
+    display: none; /* Hides elements with the 'visually-hidden' class */
+}
+
+.card-category {
+    color: #D73953; /* Sets the foreground color of elements with the 'card-category' class */
+}
+
+.section-tagline {
+    color: #D73953; /* Sets the foreground color of elements with the 'section-tagline' class */
+}
