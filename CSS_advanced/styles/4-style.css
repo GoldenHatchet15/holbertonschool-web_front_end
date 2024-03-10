@@ -1,0 +1,38 @@
+html{
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--text-color); /* Resets the foreground color of the body text to use text-color */
+    font-family: var(--font-family-base); /* Sets the body's font family to font-family-base */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-title); /* Sets the font family for all heading levels to font-family-title */
+}
+
+a {
+    color: var(--text-color); /* Resets the foreground color of all anchor elements to use text-color */
+}
+
+.visually-hidden {
+    display: none; /* Keeps the 'visually-hidden' elements hidden */
+}
+
+.card-category,
+.section-tagline {
+    color: var(--color-primary); /* Resets the foreground color of elements with 'card-category' and 'section-tagline' classes to use color-primary */
+}
+
+:root {
+    --color-primary: #d73953;
+    --color-black: #090909;
+    --color-white: #ffffff;
+    --color-light-grey: #f3f3f3;
+    --color-dark-grey: #353535;
+    --text-color: var(--color-black);
+    --font-family-base: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-family-title: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+
