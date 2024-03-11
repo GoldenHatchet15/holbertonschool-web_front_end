@@ -507,6 +507,6 @@
       --nav-item-font-size: var(--font-size-medium);
       --nav-item-letter-spacing: 0.04rem; /* Assuming the root font size is 10px */
       --nav-item-display: inline-block;
-      --nav-item-margin: 3rem 0 0 0; /* top right bottom left */
+      --nav-item-margin: 0 0 3rem 0; /* top right bottom left */
       --nav-item-link-hover: var(--color-primary);
   }
