@@ -370,36 +370,6 @@
       font-weight: var(--font-weight-regular);
       line-height: var(--line-height-base);
   }
-
- /* Styles for navbar */
- .navbar-menu {
-    float: right;
-  }
-
- .nav {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-align: center;
-  }
-
- .nav-item {
-    font-family: var(--nav-item-font-family);
-    font-weight: var(--nav-item-font-weight);
-    font-size: var(--nav-item-font-size);
-    letter-spacing: var(--nav-item-letter-spacing);
-    display: var(--nav-item-display);
-    margin: var(--nav-item-margin);
-  }
-
- .nav-link {
-    display: block;
-    padding: 0.5rem 1rem; /* Assuming the root element is 10px for easy calculations */
-  }
-
- .nav-link:hover {
-    color: var(--nav-item-link-hover);
-  }
   
   h1, h2, h3, h4, h5, h6 {
       font-family: var(--font-family-title);
@@ -423,11 +393,39 @@
       background-color: var(--color-light-grey); /* Set the background color */
   }
   
+
   .visually-hidden {
       display: none;
   }
 
- 
+  .navbar-menu{
+    float: right;
+  }
+  
+  .nav{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+  }
+  
+  .nav .nav-item{
+    font-family: var(--nav-item-font-family);
+    font-weight: var(--nav-item-font-weight);
+    font-size: var(--nav-item-font-size);
+    letter-spacing: var(--nav-item-letter-spacing);
+    display: var(--nav-item-display);
+    margin: var(--nav-item-margin);
+  }
+  
+  .nav .nav-link{
+    display: block;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav .nav-link:hover {
+    color: var(--nav-item-link-hover);
+  }
   
   .section {
     padding: var(--section-padding); /* Sets the padding on all four sides for sections */
