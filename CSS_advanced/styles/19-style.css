@@ -492,17 +492,17 @@
   }
   
   /* Styles for the footer */
-footer ul {
-    text-align: right; /* Align the text to the right for all ul tags in the footer */
-}
+  footer ul {
+      text-align: right; /* Align the text to the right for all ul tags in the footer */
+  }
 
-footer .col-1-3,
-footer .col-1-2 {
-    padding: 0; /* Override padding for footer columns if needed */
-}
+  footer .col-1-3,
+  footer .col-1-2 {
+      padding: 0; /* Override padding for footer columns if needed */
+  }
 
-/* Specific styles for footer copyright */
-footer .copyright {
+  /* Specific styles for footer copyright */
+  .footer .footer-copyright {
     margin: 0; /* No margins */
     font-size: var(--font-size-small); /* Set the size of the fonts */
     color: var(--text-color); /* Set the foreground color */
