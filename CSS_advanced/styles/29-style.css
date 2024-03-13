@@ -472,7 +472,7 @@
       left: 0; /* Set the horizontal position to 0 */
       background-color: var(--color-white); /* Set the background color */
       width: 0; /* Initial width set to 0 */
-      height: 2rem; /* Set height to 20% of the root element (assuming root font-size is 10px) */
+      height: 0.2rem; /* Set height to 20% of the root element (assuming root font-size is 10px) */
   }
 
   /* Targeting ::before pseudo-elements of .nav-link when .nav-item is hovered */
