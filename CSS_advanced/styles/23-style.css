@@ -581,22 +581,4 @@
   .social-link > svg{
       fill: var(--text-color); /* Fill in the color of the svg children with the text-color variable */
   }
-  /* Style for .card-services */
-  .card-services .card-title {
-    margin: 0;/* Sets the margin on all sides to none */
-}
-
-  /* Target <a> tags within .card-services */
-  .card-services a {
-      display: block; /* Renders the <a> tags as block level elements */
-      padding: 2rem; /* Sets the padding to 2x the root element, assuming root font-size is 10px, this equals 20px */
-      background-color: var(--color-light-grey); /* Sets the background color */
-      text-decoration: none; /* Ensures text is not decorated */
-  }
-
-/* Target the hover state of <a> tags within .card-services */
-.card-services a:hover {
-    color: var(--color-white); /* Sets the foreground color */
-    background-color: var(--color-primary); /* Sets the background color */
-    text-decoration: none; /* Ensures text is not decorated at all during hover */
-}
+  
