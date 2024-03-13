@@ -828,9 +828,9 @@
 
 /* Transitions on .card-work */
   .card-work:hover .card-image {
-      transition: transform var(--transition-duration) var(--transition-cubic-bezier); /* Ensure smooth scaling */
+      transition: var(--transition-duration) var(--transition-cubic-bezier); /* Ensure smooth scaling */
   }
 
   .card-work .card-inner {
-      transition: transform var(--transition-duration) var(--transition-cubic-bezier); /* Smooth transition for inner card */
+      transition: var(--transition-duration) var(--transition-cubic-bezier); /* Smooth transition for inner card */
   }
