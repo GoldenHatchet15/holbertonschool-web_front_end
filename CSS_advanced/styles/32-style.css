@@ -817,7 +817,7 @@
 
 /* Animations on navigation items */
   .nav .nav-link::before {
-      transition: all var(--transition-duration) var(--transition-cubic-bezier); /* Animate the pseudo-element */
+      transition: var(--transition-duration) var(--transition-cubic-bezier); /* Animate the pseudo-element */
   }
 
 /* Animate the button background on hover */
