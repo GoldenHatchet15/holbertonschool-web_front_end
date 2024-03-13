@@ -779,3 +779,23 @@
   .card-work:hover .card-title {
       opacity: 1; /* The opacity should be set to the value of 1 */
   }
+
+
+
+/* Add quotes decoration on testimonials _________________________________________________________________________________________________________*/
+
+/* Style .card-quote inside .card-testimonial */
+  .card-testimonial .card-quote {
+      position: relative; /* Position relative to its parent */
+  }
+
+/* Style the ::before pseudo-element of .card-quote inside .card-testimonial */
+  .card-testimonial .card-quote::before {
+      content: "\201C"; /* Set the content to the opening quote */
+      position: absolute; /* Absolutely position the selected elements */
+      top: -4.5rem; /* The vertical position */
+      left: -1rem; /* The horizontal position from the left */
+      color: #efeded; /* The foreground color */
+      font-size: 10rem; /* The size of fonts */
+      z-index: -1; /* The z-index */
+  }
