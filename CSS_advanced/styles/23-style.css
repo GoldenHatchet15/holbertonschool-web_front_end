@@ -578,6 +578,6 @@
   } 
 
 /* Style for svg children within .social-link */
-  .social-link svg {
+  .social-link > svg{
       fill: var(--text-color); /* Fill in the color of the svg children with the text-color variable */
   }
