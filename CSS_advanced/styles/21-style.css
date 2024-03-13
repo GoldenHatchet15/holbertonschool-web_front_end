@@ -429,12 +429,12 @@
   
   .section {
     padding: var(--section-padding); /* Sets the padding on all four sides for sections */
-}
+    }
 
 
-.section-body {
+    .section-body {
     padding: var(--section-body-padding); /* Sets the padding for section bodies */
-}
+    }
   .card-category,
   .section-tagline {
       color: var(--color-primary);
@@ -496,7 +496,16 @@
   [class^="col-"] {
     float: left;
     padding: 0.5rem; /* Assuming the root font size is 10px, this equals 5px */
-}
+  }
+  .col-1-3 {
+     width: 33.33%;
+  }   
+
+  .col-1-2 {
+    width: 50%;
+  }
+
+
   
   .footer-copyright{
     margin: 0;
