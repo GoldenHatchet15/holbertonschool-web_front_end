@@ -730,7 +730,7 @@
       height: 30rem; /* Set the height */
       width: 100%; /* Set the width */
       object-fit: cover; /* Cover fit the object */
-      object-position: bottom; /* Vertically align to the bottom */
+      vertical-align: bottom; /* Vertically align to the bottom */
   }
 
 /* Target .card-inner inside .card-work */
