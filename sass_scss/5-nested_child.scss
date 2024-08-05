@@ -1,0 +1,12 @@
+/* 
+ *Assign text color to elements inside body 
+ *and .red class elements 
+ *that are first children of body 
+ */
+body {
+    color: #3D3D3D;
+
+    > .red {
+        color: #FF0000;
+    }
+}
