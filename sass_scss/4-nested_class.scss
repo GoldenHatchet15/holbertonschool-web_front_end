@@ -1,0 +1,7 @@
+/* Assign text color to elements inside body and elements with class .red inside body */
+body {
+  color: #3D3D3D;
+  .red {
+    color: #FF0000;
+  }
+}
