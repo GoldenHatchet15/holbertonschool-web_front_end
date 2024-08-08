@@ -76,7 +76,7 @@
     --nav-item-font-weight: var(--font-weight-bold);
     --nav-item-font-size: var(--font-size-medium);
     --nav-item-letter-spacing: .04rem;
-    --nav-item-display: inline-block;
+    /*--nav-item-display: inline-block;*/ /* Removed this line */
     --nav-item-margin: 0 0 0 2rem;
     --nav-item-link-hover: var(--color-white);
   
@@ -221,11 +221,11 @@
   }*/            /* Removed this block */
   
   .nav {
-    display: flex;
     margin: 0;
     padding: 0;
     list-style: none;
     text-align: center;
+    display: flex;
   }
   
   .nav .nav-item {
@@ -237,7 +237,7 @@
     
   }
 
-  .nav-item + .nav-item {
+  .nav .nav-item + .nav-item {
     margin: var(--nav-item-margin);
   }
   
