@@ -265,6 +265,11 @@
   
   /* Header
       ============================= */
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+  }
   
   .header {
     padding: var(--header-padding);
@@ -273,10 +278,6 @@
          background: transparent;
   }
 
-  .header-container {
-    display: flex;
-    justify-content: space-between;
-  }
   
   /*.header-logo {
     position: var(--header-logo-position);
