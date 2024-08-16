@@ -657,14 +657,14 @@
     transition: var(--transition-duration) var(--transition-cubic-bezier);
   }
   
-  .card-work:hover .card-inner {
-    background-color: unset;
-  }                            /*remove card-inner background color*/
+  /*.card-work:hover .card-inner {
+    background-color: rgba(0, 0, 0, 0.7);
+  }*/                               /*remove card-inner background color*/
   
   .card-work .card-title {
     text-align: center;
     margin: 0;
-    opacity: unset;
+    /*opacity: 0;*/ /*remove opacity*/
     height: 100%;
     position: relative;
   }
@@ -673,10 +673,7 @@
     display: block;
     text-decoration: none;
     padding-top: 45%;
-  }
-
-  .card-work .card-title a {
-    opacity: 0;
+    opacity: 0; /*add opacity*/
   }
   
   .card-work .card-title a::after {
@@ -688,9 +685,9 @@
     content: '';
   }
   
-  .card-work:hover .card-title {
-    opacity: unset;
-  }                       /*remove opacity*/
+  /*.card-work:hover .card-title {
+    opacity: 1;
+  }*/                       /*remove opacity*/
 
    /* ADDED THIS  BLOCK */ 
   .card-work .card-title  a:focus,
