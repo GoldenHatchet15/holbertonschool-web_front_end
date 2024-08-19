@@ -101,7 +101,7 @@
   
   *, *:before, *:after {
     box-sizing: border-box;
-    align-items: center;
+    /*align-items: center;*/
   }
   
   html {
