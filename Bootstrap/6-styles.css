@@ -1,0 +1,58 @@
+/* Custom styles for the Bootstrap template */
+
+/* Primary button background color */
+.btn-primary {
+    background-color: #E0003C;
+    border-color: #E0003C;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #BC1340;
+    border-color: #BC1340;
+}
+
+/* Outline primary button color */
+.btn-outline-primary {
+    color: #E0003C;
+    border-color: #E0003C;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+    color: #FFFFFF !important; 
+    background-color: #E0003C;
+    border-color: #E0003C;
+}
+
+/* Links color */
+a {
+    color: #E0003C !important;
+}
+
+a:hover,
+a:focus {
+    color: #E0003C !important;
+}
+
+/* Card border and radius */
+.card, 
+.card-footer {
+    border-color: #E0003C;
+    border-radius: 1rem;
+}
+
+/* Card header background and text color */
+.card-header {
+    background-color: #E0003C;
+    color: #FFFFFF;
+    border-color: #E0003C;
+    border-radius: 1rem 1rem 0 0 !important; /* Keeps the border-radius consistent */
+}
+
+/* Muted text color */
+.text-muted {
+    color: #8C8C8C !important;
+}
