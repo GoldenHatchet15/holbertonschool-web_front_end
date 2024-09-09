@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Task 7</title>
+    <!-- Load the latest version of jQuery (Minified) from the CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <script type="application/javascript">
+        // Function to create the search form
+        function createSearchForm() {
+            // Create the form and its elements
+            const form = $('<form>');
+            const input = $('<input>').attr('type', 'text');
+            const submit = $('<input>').attr('type', 'submit').val('Search');
+            const ul = $('<ul>'); // Create an empty ul element for results
+
+            // Append the input, submit button, and ul to the form
+            form.append(input, submit);
+            $('body').append(form, ul); // Append form and ul to the body
+
+            // Handle form submission
+            form.on('submit', function(event) {
+                event.preventDefault(); // Prevent form refresh
+                const searchTerm = input.val(); // Get the search term from input
+                if (searchTerm) {
+                    queryWikipedia(searchTerm); // Query Wikipedia with the search term
+                }
+            });
+        }
+
+        // Function to add a new article to the list
+        function addNewArticle(id, title, snippet) {
+            const li = $('<li>'); // Create a list item
+            const firstParagraph = $('<p>').html(` ${id} - <b>${title}</b>`); // Correctly show the id
+            const secondParagraph = $('<p>').html(snippet); // Create second paragraph with snippet
+
+            li.append(firstParagraph, secondParagraph); // Append paragraphs to the li
+            $('ul').append(li); // Append li to the ul
+        }
+
+
+        // Function to query Wikipedia API
+        function queryWikipedia(search) {
+            const apiUrl = 'https://en.wikipedia.org/w/api.php'; // Wikipedia API URL
+            const data = {
+                action: 'query',
+                format: 'json',
+                list: 'search',
+                srsearch: search,
+                origin: '*', // Allow cross-origin requests
+            };
+
+            // AJAX GET request to the Wikipedia API
+            $.ajax({
+                url: apiUrl,
+                data: data,
+                success: function(response) {
+                    const searchResults = response.query.search;
+                    $('ul').empty(); // Clear previous search results
+
+                    // Loop through the results and call addNewArticle for each one
+                    searchResults.forEach(result => {
+                        addNewArticle(result.pageid, result.title, result.snippet);
+                    });
+                },
+                error: function() {
+                    console.error('An error occurred while fetching the data.');
+                }
+            });
+        }
+
+        // Call the function to create the search form when the page loads
+        $(document).ready(function() {
+            createSearchForm();
+        });
+    </script>
+</body>
+
+</html>
