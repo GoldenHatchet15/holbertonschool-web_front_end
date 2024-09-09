@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Task 9</title>
+    <!-- Load the latest version of jQuery (Minified) from the CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Basic styles */
+        .pagination-item {
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .pagination-item.active {
+            font-weight: bold;
+        }
+
+        #pagination {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0; /* Remove default padding */
+            display: block; /* Ensure pagination stays block-level */
+            max-width: 100%; /* Limit the width of the pagination container */
+            white-space: nowrap; /* Ensure the items stay on one line */
+            overflow-x: auto; /* Enable horizontal scrolling if necessary */
+        }
+
+        #pagination li {
+            display: inline-block; /* Display pagination items inline */
+            margin-left: 10px; /* Space between pagination items */
+            cursor: pointer;
+        }
+
+        /* New loading class */
+        .loading {
+            opacity: 0.2; /* Reduce opacity when loading */
+        }
+    </style>
+</head>
+
+<body>
+    <script type="application/javascript">
+        const itemsPerPage = 10; // Set 10 items per page
+
+        // Function to create the search form
+        function createSearchForm() {
+            const form = $('<form>');
+            const input = $('<input>').attr('type', 'text');
+            const submit = $('<input>').attr('type', 'submit').val('Search');
+            const ul = $('<ul>'); // Create an empty ul element for results
+            const pagination = $('<ul>').attr('id', 'pagination'); // Create pagination list
+
+            form.append(input, submit);
+            $('body').append(form, ul, pagination); // Append form, results, and pagination list
+
+            form.on('submit', function(event) {
+                event.preventDefault(); // Prevent form refresh
+                const searchTerm = input.val();
+                if (searchTerm) {
+                    queryWikipedia(searchTerm); // Call query with default offset
+                }
+            });
+        }
+
+        // Function to add a new article to the list
+        function addNewArticle(id, title, snippet) {
+            const li = $('<li>'); // Create a list item
+            const firstParagraph = $('<p>').html(`${id} - <b>${title}</b>`); // Correctly show the id
+            const secondParagraph = $('<p>').html(snippet); // Create second paragraph with snippet
+
+            li.append(firstParagraph, secondParagraph); // Append paragraphs to the li
+            $('ul').first().append(li); // Append li to the ul
+        }
+
+        // Function to query Wikipedia API with pagination
+        function queryWikipedia(search, offset = 0) {
+            displayLoading(true); // Show loading state
+
+            const apiUrl = 'https://en.wikipedia.org/w/api.php';
+            const data = {
+                action: 'query',
+                format: 'json',
+                list: 'search',
+                srsearch: search,
+                sroffset: offset,
+                srlimit: itemsPerPage, // Limit number of results to 10 per page
+                origin: '*',
+            };
+
+            $.ajax({
+                url: apiUrl,
+                data: data,
+                success: function(response) {
+                    const searchResults = response.query.search;
+                    const totalHits = response.query.searchinfo.totalhits;
+
+                    $('ul').first().empty(); // Clear previous search results
+
+                    searchResults.forEach(result => {
+                        addNewArticle(result.pageid, result.title, result.snippet);
+                    });
+
+                    // Call buildPagination to generate the pagination links
+                    buildPagination(totalHits, itemsPerPage, offset);
+
+                    displayLoading(false); // Hide loading state
+                },
+                error: function() {
+                    console.error('An error occurred while fetching the data.');
+                    displayLoading(false); // Hide loading state in case of error
+                }
+            });
+        }
+
+        // Function to build the pagination controls
+        function buildPagination(numberOfItems, itemsPerPage, currentOffset) {
+            const totalPages = Math.ceil(numberOfItems / itemsPerPage); // Calculate total pages
+            const currentPage = Math.floor(currentOffset / itemsPerPage) + 1; // Current page number
+
+            $('#pagination').empty(); // Clear the pagination list
+
+            // Loop through pages and create pagination items
+            for (let i = 1; i <= totalPages; i++) {
+                const pageOffset = (i - 1) * itemsPerPage;
+                const li = $('<li>').addClass('pagination-item').text(i).css({
+                    cursor: 'pointer',
+                    marginLeft: '10px'
+                });
+
+                // Set the active class if this is the current page
+                if (i === currentPage) {
+                    li.addClass('active');
+                }
+
+                // Add click event to go to the selected page
+                li.on('click', function() {
+                    queryWikipedia($('input').val(), pageOffset); // Query with the right offset
+                });
+
+                $('#pagination').append(li); // Append the pagination item
+            }
+        }
+
+        // Function to display or hide the loading state
+        function displayLoading(loading) {
+            const ulElement = $('ul').first(); // Select the first ul element
+            if (loading) {
+                if (!ulElement.parent().hasClass('loading')) {
+                    ulElement.wrap('<div class="loading"></div>'); // Wrap the ul with a div with class "loading"
+                }
+            } else {
+                if (ulElement.parent().hasClass('loading')) {
+                    ulElement.unwrap(); // Unwrap the ul from the div
+                }
+            }
+        }
+
+        // Call the function to create the search form when the page loads
+        $(document).ready(function() {
+            createSearchForm();
+        });
+    </script>
+</body>
+
+</html>
