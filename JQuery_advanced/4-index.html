@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Task 4</title>
+    <!-- Load the latest version of jQuery (Slim & Minified) from the CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+</head>
+
+<body>
+    <script type="application/javascript">
+        // Function to create the family tree table and append each element one by one
+        function createFamilyTree() {
+            // Create the table element
+            const table = $('<table>');
+
+            // Create the table header
+            const thead = $('<thead>');
+            thead.append(
+                $('<tr>').append(
+                    $('<th>').text('Firstname'),
+                    $('<th>').text('Lastname')
+                )
+            );
+
+            // Create the table body with three rows
+            const tbody = $('<tbody>');
+            tbody.append(
+                $('<tr>').append(
+                    $('<td>').text('Guillaume'),
+                    $('<td>').text('Salva')
+                ),
+                $('<tr>').append(
+                    $('<td>').text('Paulette'),
+                    $('<td>').text('Salva')
+                ),
+                $('<tr>').append(
+                    $('<td>').text('Antoine'),
+                    $('<td>').text('Salva')
+                )
+            );
+
+            // Append the head and body to the table
+            table.append(thead, tbody);
+
+            // Append the table to the body of the page
+            $('body').append(table);
+        }
+
+        // Function to replace the tbody content with a new row
+        function replaceFamilyTree() {
+            // Replace the tbody content with new values using html
+            $('tbody').html(`
+                <tr>
+                    <td>Gerard</td>
+                    <td>Bonissa</td>
+                </tr>
+            `);
+        }
+
+        // Call the functions to create and then replace the family tree
+        createFamilyTree();
+        replaceFamilyTree();
+    </script>
+</body>
+
+</html>
