@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            background-color: #f2f2f2;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        .cart-item {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Available products:</h2>
+    <div id="store"></div>
+
+    <h2>Your cart:</h2>
+    <div id="cart"></div>
+
+    <script>
+        const availableItems = ['Shampoo', 'Soap', 'Sponge', 'Water'];
+
+        // Check if session storage is supported
+        if (typeof(Storage) === "undefined") {
+            alert('Sorry, your browser does not support Web storage. Try again with a better one.');
+        } else {
+            createStore();
+            displayCart();
+        }
+
+        // Function to get the cart from session storage
+        function getCartFromStorage() {
+            const cart = sessionStorage.getItem('cart');
+            return cart ? JSON.parse(cart) : {};
+        }
+
+        // Function to add an item to the cart
+        function addItemToCart(item) {
+            const cart = getCartFromStorage();
+            cart[item] = cart[item] ? cart[item] + 1 : 1;
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+
+        // Function to remove an item from the cart
+        function removeItemFromCart(item) {
+            const cart = getCartFromStorage();
+            if (cart[item]) {
+                delete cart[item];
+                sessionStorage.setItem('cart', JSON.stringify(cart));
+                displayCart();
+            }
+        }
+
+        // Function to clear the cart
+        function clearCart() {
+            sessionStorage.removeItem('cart');
+            displayCart();
+        }
+
+        // Function to create the store and display available items
+        function createStore() {
+            const storeDiv = document.getElementById('store');
+            const ul = document.createElement('ul');
+            availableItems.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                li.addEventListener('click', () => addItemToCart(item));
+                ul.appendChild(li);
+            });
+            storeDiv.appendChild(ul);
+        }
+
+        // Function to display the cart
+        function displayCart() {
+            const cartDiv = document.getElementById('cart');
+            cartDiv.innerHTML = '';  // Clear previous cart display
+
+            const cart = getCartFromStorage();
+            const cartContentDiv = document.createElement('div');
+            cartDiv.appendChild(cartContentDiv);
+
+            updateCart(cartContentDiv, cart);
+        }
+
+        // Function to update the cart content
+        function updateCart(cartContentDiv, cart) {
+            const ul = document.createElement('ul');
+
+            // Add the "Clear my cart" option
+            const clearCartLi = document.createElement('li');
+            clearCartLi.textContent = 'Clear my cart';
+            clearCartLi.addEventListener('click', clearCart);
+            ul.appendChild(clearCartLi);
+
+            // Check if cart is empty
+            if (Object.keys(cart).length === 0) {
+                const emptyLi = document.createElement('li');
+                emptyLi.textContent = 'Your cart is empty';
+                ul.appendChild(emptyLi);
+            } else {
+                // Display each item in the cart with a remove option
+                for (const item in cart) {
+                    const li = document.createElement('li');
+                    li.classList.add('cart-item');
+                    li.innerHTML = `${item} x ${cart[item]} <span style="cursor: pointer; color: blue">(remove)</span>`;
+                    li.querySelector('span').addEventListener('click', () => removeItemFromCart(item));
+                    ul.appendChild(li);
+                }
+            }
+
+            cartContentDiv.appendChild(ul);
+        }
+    </script>
+</body>
+</html>

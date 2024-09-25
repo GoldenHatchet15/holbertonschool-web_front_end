@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Cookies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input {
+            margin-right: 10px;
+            padding: 5px;
+        }
+        button {
+            margin-right: 10px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login to the website</h1>
+    <input type="text" id="firstname" placeholder="Firstname">
+    <input type="email" id="email" placeholder="Email">
+    <button onclick="setCookies()">Log me in</button>
+
+    <h2>Cookies</h2>
+    <button onclick="showCookies()">Show the cookies</button>
+    <div id="cookie-display"></div>
+
+    <script>
+        // Helper function to get the expiration date for cookies
+        function getExpirationDate(days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Expire in 'days' days
+            return date.toUTCString();
+        }
+
+        // Function to set cookies with expiration and path
+        function setCookies() {
+            const firstName = document.getElementById('firstname').value;
+            const email = document.getElementById('email').value;
+
+            const expirationDate = getExpirationDate(10); // Cookie expires in 10 days
+
+            // Setting cookies with expiration and path
+            document.cookie = `firstname=${firstName}; expires=${expirationDate}; path=/`;
+            document.cookie = `email=${email}; expires=${expirationDate}; path=/`;
+
+            alert('Cookies set with 10 days expiration!');
+        }
+
+        // Function to get a specific cookie value by name
+        function getCookie(name) {
+            const cookies = document.cookie.split('; ');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].split('=');
+                if (cookie[0] === name) {
+                    return cookie[1];  // Return the cookie value
+                }
+            }
+            return '';  // Return empty string if cookie is not found
+        }
+
+        // Function to show cookies in the format "Email: EMAIL - Firstname: FIRSTNAME"
+        function showCookies() {
+            const firstName = getCookie('firstname');
+            const email = getCookie('email');
+            const displayDiv = document.getElementById('cookie-display');
+
+            // Clear existing content
+            displayDiv.innerHTML = '';
+
+            // Create a paragraph and show cookies
+            const p = document.createElement('p');
+            p.innerHTML = `Email: ${email || 'Not Set'} - Firstname: ${firstName || 'Not Set'}`;
+            displayDiv.appendChild(p);
+        }
+    </script>
+</body>
+</html>

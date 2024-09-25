@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart with Session Storage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            background-color: #f2f2f2;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+    <div id="store"></div>
+    <div id="cart"></div>
+
+    <script>
+        const availableItems = ['Shampoo', 'Soap', 'Sponge', 'Water'];
+
+        // Check if session storage is supported
+        if (typeof(Storage) === "undefined") {
+            alert('Sorry, your browser does not support Web storage. Try again with a better one.');
+        } else {
+            createStore();
+            displayCart();
+        }
+
+        // Function to add an item to the cart using session storage
+        function addItemToCart(item) {
+            sessionStorage.setItem(item, 'true');
+            displayCart();  // Update the cart display after adding
+        }
+
+        // Function to create the store and display available items
+        function createStore() {
+            const storeDiv = document.getElementById('store');
+            const ul = document.createElement('ul');
+            availableItems.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                li.addEventListener('click', () => addItemToCart(item));
+                ul.appendChild(li);
+            });
+            storeDiv.appendChild(ul);
+        }
+
+        // Function to display the cart
+        function displayCart() {
+            const cartDiv = document.getElementById('cart');
+            cartDiv.innerHTML = '';  // Clear previous cart display
+
+            // Retrieve all keys (items) from session storage
+            const itemsInCart = Object.keys(sessionStorage).filter(key => sessionStorage.getItem(key) === 'true');
+            
+            if (itemsInCart.length > 0) {
+                const p = document.createElement('p');
+                p.textContent = `You previously had ${itemsInCart.length} item(s) in your cart.`;
+                cartDiv.appendChild(p);
+            }
+        }
+    </script>
+</body>
+</html>
